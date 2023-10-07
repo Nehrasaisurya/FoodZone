@@ -89,10 +89,11 @@ const Navbar = () => {
             <button onClick={toggleNavbar} className="">
               {isOpen ? <FaTimes /> : <FaBars />}
             </button>
-            <MainLink to="/cart" className="cart">
-              <FaShoppingCart />
+
+            <div className="cart cursor-pointer">
+              <FaShoppingCart onClick={() => toggleShow()} />
               <small className="cart-number">{cartItems.length}</small>
-            </MainLink>
+            </div>
           </div>
         </div>
         {isOpen && (
@@ -116,7 +117,7 @@ const Navbar = () => {
 
         {show && (
           <div className="absolute top-0 right-0 w-full h-screen bg-black bg-opacity-50 z-90">
-            <div className="absolute top-0 right-0 w-[300px] sm:w-[400px] h-screen bg-[#8edfff] z-100 p-5 py-7">
+            <div className="absolute top-0 right-0 w-[350px] sm:w-[400px] h-screen bg-[#8edfff] z-100 p-5 py-7">
               <div className="flex justify-between">
                 <span> </span>
                 <h1 className="text-black font-extrabold text-2xl">
@@ -177,14 +178,18 @@ const Navbar = () => {
                               {item.title}
                             </h1>
                           </div>
-                          <h1 className="font-bold text-lg">$.{item.price}</h1>
-                          <div className="flex justify-end">
-                            <button
-                              onClick={() => handleRemoveItem(item.key)}
-                              className="text-md bg-red-500 text-white rounded-md px-4 py-2"
-                            >
-                              <AiOutlineDelete />
-                            </button>
+                          <div className="flex justify-between mt-auto">
+                            <h1 className="font-bold text-lg">
+                              $.{item.price}
+                            </h1>
+                            <div className="mt-auto">
+                              <button
+                                onClick={() => handleRemoveItem(item.key)}
+                                className="text-md bg-red-500 text-white rounded-md px-4 py-2"
+                              >
+                                <AiOutlineDelete />
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
